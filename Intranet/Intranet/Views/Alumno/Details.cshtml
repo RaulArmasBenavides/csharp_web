@@ -1,0 +1,66 @@
+﻿@model Intranet.Models.Alumno
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Alumno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApeAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApeAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAlumno }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EduTecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="IdAlumno" />
+          </Key>
+          <Property Name="IdAlumno" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="ApeAlumno" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NomAlumno" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DirAlumno" Type="varchar" MaxLength="50" />
+          <Property Name="TelAlumno" Type="varchar" MaxLength="20" />
+          <Property Name="EmailAlumno" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aud_curso_modif">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cur_id" Type="char" MaxLength="4" />
+          <Property Name="observaciones" Type="varchar" MaxLength="100" />
+          <Property Name="valor_antes" Type="nvarchar" MaxLength="100" />
+          <Property Name="valor_despues" Type="nvarchar" MaxLength="100" />
+          <Property Name="usuario_bd" Type="varchar" MaxLength="100" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="Ciclo">
+          <Key>
+            <PropertyRef Name="IdCiclo" />
+          </Key>
+          <Property Name="IdCiclo" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="FecInicio" Type="datetime" />
+          <Property Name="FecTermino" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IdCurso" />
+          </Key>
+          <Property Name="IdCurso" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="IdTarifa" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NomCurso" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CursoProgramado">
+          <Key>
+            <PropertyRef Name="IdCursoProg" />
+          </Key>
+          <Property Name="IdCursoProg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCurso" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="IdCiclo" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="IdProfesor" Type="char" MaxLength="4" />
+          <Property Name="Vacantes" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Matriculados" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="PreCursoProg" Type="money" Nullable="false" />
+          <Property Name="Horario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Activo" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ApeEmpleado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NomEmpleado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Cargo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DirEmpleado" Type="varchar" MaxLength="50" />
+          <Property Name="TelEmpleado" Type="varchar" MaxLength="20" />
+          <Property Name="EmailEmpleado" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matricula">
+          <Key>
+            <PropertyRef Name="IdCursoProg" />
+            <PropertyRef Name="IdAlumno" />
+          </Key>
+          <Property Name="IdCursoProg" Type="int" Nullable="false" />
+          <Property Name="IdAlumno" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="FecMatricula" Type="datetime" Nullable="false" />
+          <Property Name="ExaParcial" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="ExaFinal" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="Promedio" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="Subsanacion" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ExaSub" Type="numeric" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="Campo" />
+          </Key>
+          <Property Name="Campo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Contador" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="IdProfesor" />
+          </Key>
+          <Property Name="IdProfesor" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ApeProfesor" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NomProfesor" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DirProfesor" Type="varchar" MaxLength="50" />
+          <Property Name="TelProfesor" Type="varchar" MaxLength="20" />
+          <Property Name="EmailProfesor" Type="varchar" MaxLength="40" />
+          <Property Name="Clave" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarifa">
+          <Key>
+            <PropertyRef Name="IdTarifa" />
+          </Key>
+          <Property Name="IdTarifa" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PrecioVenta" Type="money" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Horas" Type="int" Nullable="false" />
+          <Property Name="PagoHora" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Curso_Tarifa">
+          <End Role="Tarifa" Type="Self.Tarifa" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarifa">
+              <PropertyRef Name="IdTarifa" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="IdTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoProgramado_Ciclo">
+          <End Role="Ciclo" Type="Self.Ciclo" Multiplicity="1" />
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciclo">
+              <PropertyRef Name="IdCiclo" />
+            </Principal>
+            <Dependent Role="CursoProgramado">
+              <PropertyRef Name="IdCiclo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoProgramado_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="IdCurso" />
+            </Principal>
+            <Dependent Role="CursoProgramado">
+              <PropertyRef Name="IdCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoProgramado_Profesor">
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="IdProfesor" />
+            </Principal>
+            <Dependent Role="CursoProgramado">
+              <PropertyRef Name="IdProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matricula_Alumno">
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumno">
+              <PropertyRef Name="IdAlumno" />
+            </Principal>
+            <Dependent Role="Matricula">
+              <PropertyRef Name="IdAlumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matricula_CursoProgramado">
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="1" />
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CursoProgramado">
+              <PropertyRef Name="IdCursoProg" />
+            </Principal>
+            <Dependent Role="Matricula">
+              <PropertyRef Name="IdCursoProg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CursosDictadosDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigo" Type="char" Mode="In" />
+          <Parameter Name="ciclo" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Ciclo" Type="char" MaxLength="7" Nullable="false" />
+                <Property Name="CodProfesor" Type="char" MaxLength="4" Nullable="false" />
+                <Property Name="CodCurso" Type="char" MaxLength="4" Nullable="false" />
+                <Property Name="NombreCurso" Type="varchar" MaxLength="50" />
+                <Property Name="Matriculados" Type="numeric" Precision="3" Scale="0" />
+                <Property Name="Horario" Type="varchar" MaxLength="30" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="usp_registra_Curso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCurso" Type="char" Mode="In" />
+          <Parameter Name="IdTarifa" Type="char" Mode="In" />
+          <Parameter Name="NomCurso" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_reporte_CumplimientoCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCiclo" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_reporte_HistorialAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCodigo" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="EduTecModelStoreContainer">
+          <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aud_curso_modif" EntityType="Self.aud_curso_modif" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciclo" EntityType="Self.Ciclo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CursoProgramado" EntityType="Self.CursoProgramado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matricula" EntityType="Self.Matricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profesor" EntityType="Self.Profesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarifa" EntityType="Self.Tarifa" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Curso_Tarifa" Association="Self.FK_Curso_Tarifa">
+            <End Role="Tarifa" EntitySet="Tarifa" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoProgramado_Ciclo" Association="Self.FK_CursoProgramado_Ciclo">
+            <End Role="Ciclo" EntitySet="Ciclo" />
+            <End Role="CursoProgramado" EntitySet="CursoProgramado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoProgramado_Curso" Association="Self.FK_CursoProgramado_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="CursoProgramado" EntitySet="CursoProgramado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoProgramado_Profesor" Association="Self.FK_CursoProgramado_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="CursoProgramado" EntitySet="CursoProgramado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matricula_Alumno" Association="Self.FK_Matricula_Alumno">
+            <End Role="Alumno" EntitySet="Alumno" />
+            <End Role="Matricula" EntitySet="Matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matricula_CursoProgramado" Association="Self.FK_Matricula_CursoProgramado">
+            <End Role="CursoProgramado" EntitySet="CursoProgramado" />
+            <End Role="Matricula" EntitySet="Matricula" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EduTecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="CursosDictadosDocente_Result">
+          <Property Name="Ciclo" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CodProfesor" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CodCurso" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NombreCurso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Matriculados" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="Horario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="IdAlumno" />
+          </Key>
+          <Property Name="IdAlumno" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ApeAlumno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomAlumno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DirAlumno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelAlumno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAlumno" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Matriculas" Relationship="Self.FK_Matricula_Alumno" FromRole="Alumno" ToRole="Matricula" />
+        </EntityType>
+        <EntityType Name="aud_curso_modif">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cur_id" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="valor_antes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="valor_despues" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="usuario_bd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Ciclo">
+          <Key>
+            <PropertyRef Name="IdCiclo" />
+          </Key>
+          <Property Name="IdCiclo" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FecInicio" Type="DateTime" Precision="3" />
+          <Property Name="FecTermino" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CursoProgramadoes" Relationship="Self.FK_CursoProgramado_Ciclo" FromRole="Ciclo" ToRole="CursoProgramado" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IdCurso" />
+          </Key>
+          <Property Name="IdCurso" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IdTarifa" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NomCurso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tarifa" Relationship="Self.FK_Curso_Tarifa" FromRole="Curso" ToRole="Tarifa" />
+          <NavigationProperty Name="CursoProgramadoes" Relationship="Self.FK_CursoProgramado_Curso" FromRole="Curso" ToRole="CursoProgramado" />
+        </EntityType>
+        <EntityType Name="CursoProgramado">
+          <Key>
+            <PropertyRef Name="IdCursoProg" />
+          </Key>
+          <Property Name="IdCursoProg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCurso" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IdCiclo" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IdProfesor" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Vacantes" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="Matriculados" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="PreCursoProg" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Horario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Ciclo" Relationship="Self.FK_CursoProgramado_Ciclo" FromRole="CursoProgramado" ToRole="Ciclo" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_CursoProgramado_Curso" FromRole="CursoProgramado" ToRole="Curso" />
+          <NavigationProperty Name="Profesor" Relationship="Self.FK_CursoProgramado_Profesor" FromRole="CursoProgramado" ToRole="Profesor" />
+          <NavigationProperty Name="Matriculas" Relationship="Self.FK_Matricula_CursoProgramado" FromRole="CursoProgramado" ToRole="Matricula" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ApeEmpleado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomEmpleado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cargo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DirEmpleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelEmpleado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailEmpleado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matricula">
+          <Key>
+            <PropertyRef Name="IdCursoProg" />
+            <PropertyRef Name="IdAlumno" />
+          </Key>
+          <Property Name="IdCursoProg" Type="Int32" Nullable="false" />
+          <Property Name="IdAlumno" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FecMatricula" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExaParcial" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="ExaFinal" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Promedio" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="Subsanacion" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="ExaSub" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="Alumno" Relationship="Self.FK_Matricula_Alumno" FromRole="Matricula" ToRole="Alumno" />
+          <NavigationProperty Name="CursoProgramado" Relationship="Self.FK_Matricula_CursoProgramado" FromRole="Matricula" ToRole="CursoProgramado" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="Campo" />
+          </Key>
+          <Property Name="Campo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contador" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="IdProfesor" />
+          </Key>
+          <Property Name="IdProfesor" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ApeProfesor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomProfesor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DirProfesor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelProfesor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailProfesor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CursoProgramadoes" Relationship="Self.FK_CursoProgramado_Profesor" FromRole="Profesor" ToRole="CursoProgramado" />
+        </EntityType>
+        <EntityType Name="Tarifa">
+          <Key>
+            <PropertyRef Name="IdTarifa" />
+          </Key>
+          <Property Name="IdTarifa" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PrecioVenta" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Horas" Type="Int32" Nullable="false" />
+          <Property Name="PagoHora" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Cursoes" Relationship="Self.FK_Curso_Tarifa" FromRole="Tarifa" ToRole="Curso" />
+        </EntityType>
+        <Association Name="FK_Matricula_Alumno">
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="1" />
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumno">
+              <PropertyRef Name="IdAlumno" />
+            </Principal>
+            <Dependent Role="Matricula">
+              <PropertyRef Name="IdAlumno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoProgramado_Ciclo">
+          <End Role="Ciclo" Type="Self.Ciclo" Multiplicity="1" />
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciclo">
+              <PropertyRef Name="IdCiclo" />
+            </Principal>
+            <Dependent Role="CursoProgramado">
+              <PropertyRef Name="IdCiclo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Tarifa">
+          <End Role="Tarifa" Type="Self.Tarifa" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarifa">
+              <PropertyRef Name="IdTarifa" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="IdTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoProgramado_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="IdCurso" />
+            </Principal>
+            <Dependent Role="CursoProgramado">
+              <PropertyRef Name="IdCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CursoProgramado_Profesor">
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="IdProfesor" />
+            </Principal>
+            <Dependent Role="CursoProgramado">
+              <PropertyRef Name="IdProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matricula_CursoProgramado">
+          <End Role="CursoProgramado" Type="Self.CursoProgramado" Multiplicity="1" />
+          <End Role="Matricula" Type="Self.Matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CursoProgramado">
+              <PropertyRef Name="IdCursoProg" />
+            </Principal>
+            <Dependent Role="Matricula">
+              <PropertyRef Name="IdCursoProg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EduTecEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alumnoes" EntityType="Self.Alumno" />
+          <EntitySet Name="aud_curso_modif" EntityType="Self.aud_curso_modif" />
+          <EntitySet Name="Cicloes" EntityType="Self.Ciclo" />
+          <EntitySet Name="Cursoes" EntityType="Self.Curso" />
+          <EntitySet Name="CursoProgramadoes" EntityType="Self.CursoProgramado" />
+          <EntitySet Name="Empleadoes" EntityType="Self.Empleado" />
+          <EntitySet Name="Matriculas" EntityType="Self.Matricula" />
+          <EntitySet Name="Parametroes" EntityType="Self.Parametro" />
+          <EntitySet Name="Profesors" EntityType="Self.Profesor" />
+          <EntitySet Name="Tarifas" EntityType="Self.Tarifa" />
+          <AssociationSet Name="FK_Matricula_Alumno" Association="Self.FK_Matricula_Alumno">
+            <End Role="Alumno" EntitySet="Alumnoes" />
+            <End Role="Matricula" EntitySet="Matriculas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoProgramado_Ciclo" Association="Self.FK_CursoProgramado_Ciclo">
+            <End Role="Ciclo" EntitySet="Cicloes" />
+            <End Role="CursoProgramado" EntitySet="CursoProgramadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Tarifa" Association="Self.FK_Curso_Tarifa">
+            <End Role="Tarifa" EntitySet="Tarifas" />
+            <End Role="Curso" EntitySet="Cursoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoProgramado_Curso" Association="Self.FK_CursoProgramado_Curso">
+            <End Role="Curso" EntitySet="Cursoes" />
+            <End Role="CursoProgramado" EntitySet="CursoProgramadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CursoProgramado_Profesor" Association="Self.FK_CursoProgramado_Profesor">
+            <End Role="Profesor" EntitySet="Profesors" />
+            <End Role="CursoProgramado" EntitySet="CursoProgramadoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matricula_CursoProgramado" Association="Self.FK_Matricula_CursoProgramado">
+            <End Role="CursoProgramado" EntitySet="CursoProgramadoes" />
+            <End Role="Matricula" EntitySet="Matriculas" />
+          </AssociationSet>
+          <FunctionImport Name="CursosDictadosDocente" IsComposable="true" ReturnType="Collection(EduTecModel.CursosDictadosDocente_Result)">
+            <Parameter Name="codigo" Mode="In" Type="String" />
+            <Parameter Name="ciclo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_registra_Curso">
+            <Parameter Name="IdCurso" Mode="In" Type="String" />
+            <Parameter Name="IdTarifa" Mode="In" Type="String" />
+            <Parameter Name="NomCurso" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_reporte_CumplimientoCurso" ReturnType="Collection(EduTecModel.usp_reporte_CumplimientoCurso_Result)">
+            <Parameter Name="IdCiclo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_reporte_HistorialAlumno" ReturnType="Collection(EduTecModel.usp_reporte_HistorialAlumno_Result)">
+            <Parameter Name="IdCodigo" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_reporte_CumplimientoCurso_Result">
+          <Property Type="String" Name="IdCurso" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="NomCurso" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Vacantes" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="Matriculados" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="Ingreso_proyectado" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Decimal" Name="Ingreso_real" Nullable="true" Precision="23" Scale="4" />
+          <Property Type="Decimal" Name="cumplimiento" Nullable="true" Precision="13" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_reporte_HistorialAlumno_Result">
+          <Property Type="String" Name="IdCiclo" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="IdAlumno" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Estudiante" Nullable="false" MaxLength="61" />
+          <Property Type="DateTime" Name="FecMatricula" Nullable="false" Precision="23" />
+          <Property Type="String" Name="IdCurso" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="NomCurso" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Horario" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="ExaParcial" Nullable="true" Precision="4" Scale="2" />
+          <Property Type="Decimal" Name="ExaFinal" Nullable="true" Precision="4" Scale="2" />
+          <Property Type="Decimal" Name="Promedio" Nullable="true" Precision="4" Scale="2" />
+          <Property Type="Decimal" Name="ExaSusti" Nullable="false" Precision="4" Scale="2" />
+          <Property Type="String" Name="Docente" Nullable="false" MaxLength="61" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EduTecModelStoreContainer" CdmEntityContainer="EduTecEntities">
+          <EntitySetMapping Name="Alumnoes">
+            <EntityTypeMapping TypeName="EduTecModel.Alumno">
+              <MappingFragment StoreEntitySet="Alumno">
+                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+                <ScalarProperty Name="ApeAlumno" ColumnName="ApeAlumno" />
+                <ScalarProperty Name="NomAlumno" ColumnName="NomAlumno" />
+                <ScalarProperty Name="DirAlumno" ColumnName="DirAlumno" />
+                <ScalarProperty Name="TelAlumno" ColumnName="TelAlumno" />
+                <ScalarProperty Name="EmailAlumno" ColumnName="EmailAlumno" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aud_curso_modif">
+            <EntityTypeMapping TypeName="EduTecModel.aud_curso_modif">
+              <MappingFragment StoreEntitySet="aud_curso_modif">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cur_id" ColumnName="cur_id" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="valor_antes" ColumnName="valor_antes" />
+                <ScalarProperty Name="valor_despues" ColumnName="valor_despues" />
+                <ScalarProperty Name="usuario_bd" ColumnName="usuario_bd" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cicloes">
+            <EntityTypeMapping TypeName="EduTecModel.Ciclo">
+              <MappingFragment StoreEntitySet="Ciclo">
+                <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+                <ScalarProperty Name="FecInicio" ColumnName="FecInicio" />
+                <ScalarProperty Name="FecTermino" ColumnName="FecTermino" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cursoes">
+            <EntityTypeMapping TypeName="EduTecModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+                <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
+                <ScalarProperty Name="NomCurso" ColumnName="NomCurso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CursoProgramadoes">
+            <EntityTypeMapping TypeName="EduTecModel.CursoProgramado">
+              <MappingFragment StoreEntitySet="CursoProgramado">
+                <ScalarProperty Name="IdCursoProg" ColumnName="IdCursoProg" />
+                <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+                <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+                <ScalarProperty Name="IdProfesor" ColumnName="IdProfesor" />
+                <ScalarProperty Name="Vacantes" ColumnName="Vacantes" />
+                <ScalarProperty Name="Matriculados" ColumnName="Matriculados" />
+                <ScalarProperty Name="PreCursoProg" ColumnName="PreCursoProg" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleadoes">
+            <EntityTypeMapping TypeName="EduTecModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="ApeEmpleado" ColumnName="ApeEmpleado" />
+                <ScalarProperty Name="NomEmpleado" ColumnName="NomEmpleado" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="DirEmpleado" ColumnName="DirEmpleado" />
+                <ScalarProperty Name="TelEmpleado" ColumnName="TelEmpleado" />
+                <ScalarProperty Name="EmailEmpleado" ColumnName="EmailEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matriculas">
+            <EntityTypeMapping TypeName="EduTecModel.Matricula">
+              <MappingFragment StoreEntitySet="Matricula">
+                <ScalarProperty Name="IdCursoProg" ColumnName="IdCursoProg" />
+                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+                <ScalarProperty Name="FecMatricula" ColumnName="FecMatricula" />
+                <ScalarProperty Name="ExaParcial" ColumnName="ExaParcial" />
+                <ScalarProperty Name="ExaFinal" ColumnName="ExaFinal" />
+                <ScalarProperty Name="Promedio" ColumnName="Promedio" />
+                <ScalarProperty Name="Subsanacion" ColumnName="Subsanacion" />
+                <ScalarProperty Name="ExaSub" ColumnName="ExaSub" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametroes">
+            <EntityTypeMapping TypeName="EduTecModel.Parametro">
+              <MappingFragment StoreEntitySet="Parametro">
+                <ScalarProperty Name="Campo" ColumnName="Campo" />
+                <ScalarProperty Name="Contador" ColumnName="Contador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesors">
+            <EntityTypeMapping TypeName="EduTecModel.Profesor">
+              <MappingFragment StoreEntitySet="Profesor">
+                <ScalarProperty Name="IdProfesor" ColumnName="IdProfesor" />
+                <ScalarProperty Name="ApeProfesor" ColumnName="ApeProfesor" />
+                <ScalarProperty Name="NomProfesor" ColumnName="NomProfesor" />
+                <ScalarProperty Name="DirProfesor" ColumnName="DirProfesor" />
+                <ScalarProperty Name="TelProfesor" ColumnName="TelProfesor" />
+                <ScalarProperty Name="EmailProfesor" ColumnName="EmailProfesor" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarifas">
+            <EntityTypeMapping TypeName="EduTecModel.Tarifa">
+              <MappingFragment StoreEntitySet="Tarifa">
+                <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
+                <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="PagoHora" ColumnName="PagoHora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="EduTecModel.Store.CursosDictadosDocente" FunctionImportName="CursosDictadosDocente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EduTecModel.CursosDictadosDocente_Result">
+                <ScalarProperty Name="Ciclo" ColumnName="Ciclo" />
+                <ScalarProperty Name="CodProfesor" ColumnName="CodProfesor" />
+                <ScalarProperty Name="CodCurso" ColumnName="CodCurso" />
+                <ScalarProperty Name="NombreCurso" ColumnName="NombreCurso" />
+                <ScalarProperty Name="Matriculados" ColumnName="Matriculados" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_registra_Curso" FunctionName="EduTecModel.Store.usp_registra_Curso" />
+          <FunctionImportMapping FunctionImportName="usp_reporte_CumplimientoCurso" FunctionName="EduTecModel.Store.usp_reporte_CumplimientoCurso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EduTecModel.usp_reporte_CumplimientoCurso_Result">
+                <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+                <ScalarProperty Name="NomCurso" ColumnName="NomCurso" />
+                <ScalarProperty Name="Vacantes" ColumnName="Vacantes" />
+                <ScalarProperty Name="Matriculados" ColumnName="Matriculados" />
+                <ScalarProperty Name="Ingreso_proyectado" ColumnName="Ingreso_proyectado" />
+                <ScalarProperty Name="Ingreso_real" ColumnName="Ingreso_real" />
+                <ScalarProperty Name="cumplimiento" ColumnName="cumplimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_reporte_HistorialAlumno" FunctionName="EduTecModel.Store.usp_reporte_HistorialAlumno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EduTecModel.usp_reporte_HistorialAlumno_Result">
+                <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+                <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+                <ScalarProperty Name="Estudiante" ColumnName="Estudiante" />
+                <ScalarProperty Name="FecMatricula" ColumnName="FecMatricula" />
+                <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+                <ScalarProperty Name="NomCurso" ColumnName="NomCurso" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="ExaParcial" ColumnName="ExaParcial" />
+                <ScalarProperty Name="ExaFinal" ColumnName="ExaFinal" />
+                <ScalarProperty Name="Promedio" ColumnName="Promedio" />
+                <ScalarProperty Name="ExaSusti" ColumnName="ExaSusti" />
+                <ScalarProperty Name="Docente" ColumnName="Docente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

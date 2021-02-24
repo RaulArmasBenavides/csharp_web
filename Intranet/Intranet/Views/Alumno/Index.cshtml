@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Intranet.Models.Alumno>
+
+@{
+    ViewBag.Title = "Lista de Alumnos";
+}
+
+<style>
+    button {
+        display: inline-block;
+        zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+        *display: inline;
+        vertical-align: baseline;
+        margin: 0 2px;
+        outline: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font: 12px/100% Arial, Helvetica, sans-serif;
+        padding: .5em 2em .55em;
+        text-shadow: 0 1px 1px rgba(0,0,0,.3);
+        -webkit-border-radius: .5em;
+        -moz-border-radius: .5em;
+        border-radius: .5em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    }
+
+        button:hover {
+            text-decoration: none;
+        }
+
+        button:active {
+            position: relative;
+            top: 1px;
+        }
+</style>
+
+
+
+
+<h2>Index</h2>
+
+
+
+<script src="~/scripts/jsEventos.js"></script>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApeAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DirAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clave)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApeAlumno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomAlumno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DirAlumno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelAlumno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAlumno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clave)
+        </td>
+        <td>
+           <!--@Html.ActionLink("Edit", "Edit", new { id=item.IdAlumno })-->
+            <button class="btn-edit" data-codigo="@item.IdAlumno">Editar</button>|
+           <!--@Html.ActionLink("Details", "Details", new { id=item.IdAlumno})-->
+            <button class="btn-details" data-codigo="@item.IdAlumno">Detalles</button>|
+           <!-- @Html.ActionLink("Delete", "Delete", new { id=item.IdAlumno })-->
+            <button class="btn-delete" data-codigo="@item.IdAlumno">Eliminar</button>|
+        </td>
+    </tr>
+}
+
+</table>
+<div id="modal"></div>

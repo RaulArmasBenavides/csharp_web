@@ -1,0 +1,39 @@
+﻿@model Intranet.Models.Alumno
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>INTRANET COLEGIO TRILCE</title>
+</head>
+
+<body>
+    <h3>Usuario : @Session["userID"].ToString()</h3>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          
+            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+            <li>@Html.ActionLink("Alumnos", "Index", "Alumno")</li>
+            <li>@Html.ActionLink("Alumnos", "Index", "Alumno", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Acerca de", "Crear", "Alumno")</li>
+            <li>@Html.ActionLink("Contacto", "Detalles", "Alumno")</li>
+            <li><a>@Html.ActionLink("Alumnos", "Crear", "Alumno")</a></li>
+            <li><a>@Url.Action("LogOut", "Login")</a></li>
+        </ul>
+    </div>
+
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+</body>
+
+
+</html>
+

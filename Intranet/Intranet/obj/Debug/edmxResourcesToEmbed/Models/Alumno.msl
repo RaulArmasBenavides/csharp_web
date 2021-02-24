@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EduTecModelStoreContainer" CdmEntityContainer="EduTecEntities">
+    <EntitySetMapping Name="Alumnoes">
+      <EntityTypeMapping TypeName="EduTecModel.Alumno">
+        <MappingFragment StoreEntitySet="Alumno">
+          <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+          <ScalarProperty Name="ApeAlumno" ColumnName="ApeAlumno" />
+          <ScalarProperty Name="NomAlumno" ColumnName="NomAlumno" />
+          <ScalarProperty Name="DirAlumno" ColumnName="DirAlumno" />
+          <ScalarProperty Name="TelAlumno" ColumnName="TelAlumno" />
+          <ScalarProperty Name="EmailAlumno" ColumnName="EmailAlumno" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aud_curso_modif">
+      <EntityTypeMapping TypeName="EduTecModel.aud_curso_modif">
+        <MappingFragment StoreEntitySet="aud_curso_modif">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cur_id" ColumnName="cur_id" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="valor_antes" ColumnName="valor_antes" />
+          <ScalarProperty Name="valor_despues" ColumnName="valor_despues" />
+          <ScalarProperty Name="usuario_bd" ColumnName="usuario_bd" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cicloes">
+      <EntityTypeMapping TypeName="EduTecModel.Ciclo">
+        <MappingFragment StoreEntitySet="Ciclo">
+          <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+          <ScalarProperty Name="FecInicio" ColumnName="FecInicio" />
+          <ScalarProperty Name="FecTermino" ColumnName="FecTermino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cursoes">
+      <EntityTypeMapping TypeName="EduTecModel.Curso">
+        <MappingFragment StoreEntitySet="Curso">
+          <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+          <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
+          <ScalarProperty Name="NomCurso" ColumnName="NomCurso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CursoProgramadoes">
+      <EntityTypeMapping TypeName="EduTecModel.CursoProgramado">
+        <MappingFragment StoreEntitySet="CursoProgramado">
+          <ScalarProperty Name="IdCursoProg" ColumnName="IdCursoProg" />
+          <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+          <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+          <ScalarProperty Name="IdProfesor" ColumnName="IdProfesor" />
+          <ScalarProperty Name="Vacantes" ColumnName="Vacantes" />
+          <ScalarProperty Name="Matriculados" ColumnName="Matriculados" />
+          <ScalarProperty Name="PreCursoProg" ColumnName="PreCursoProg" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleadoes">
+      <EntityTypeMapping TypeName="EduTecModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="ApeEmpleado" ColumnName="ApeEmpleado" />
+          <ScalarProperty Name="NomEmpleado" ColumnName="NomEmpleado" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="DirEmpleado" ColumnName="DirEmpleado" />
+          <ScalarProperty Name="TelEmpleado" ColumnName="TelEmpleado" />
+          <ScalarProperty Name="EmailEmpleado" ColumnName="EmailEmpleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Matriculas">
+      <EntityTypeMapping TypeName="EduTecModel.Matricula">
+        <MappingFragment StoreEntitySet="Matricula">
+          <ScalarProperty Name="IdCursoProg" ColumnName="IdCursoProg" />
+          <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+          <ScalarProperty Name="FecMatricula" ColumnName="FecMatricula" />
+          <ScalarProperty Name="ExaParcial" ColumnName="ExaParcial" />
+          <ScalarProperty Name="ExaFinal" ColumnName="ExaFinal" />
+          <ScalarProperty Name="Promedio" ColumnName="Promedio" />
+          <ScalarProperty Name="Subsanacion" ColumnName="Subsanacion" />
+          <ScalarProperty Name="ExaSub" ColumnName="ExaSub" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parametroes">
+      <EntityTypeMapping TypeName="EduTecModel.Parametro">
+        <MappingFragment StoreEntitySet="Parametro">
+          <ScalarProperty Name="Campo" ColumnName="Campo" />
+          <ScalarProperty Name="Contador" ColumnName="Contador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profesors">
+      <EntityTypeMapping TypeName="EduTecModel.Profesor">
+        <MappingFragment StoreEntitySet="Profesor">
+          <ScalarProperty Name="IdProfesor" ColumnName="IdProfesor" />
+          <ScalarProperty Name="ApeProfesor" ColumnName="ApeProfesor" />
+          <ScalarProperty Name="NomProfesor" ColumnName="NomProfesor" />
+          <ScalarProperty Name="DirProfesor" ColumnName="DirProfesor" />
+          <ScalarProperty Name="TelProfesor" ColumnName="TelProfesor" />
+          <ScalarProperty Name="EmailProfesor" ColumnName="EmailProfesor" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tarifas">
+      <EntityTypeMapping TypeName="EduTecModel.Tarifa">
+        <MappingFragment StoreEntitySet="Tarifa">
+          <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
+          <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Horas" ColumnName="Horas" />
+          <ScalarProperty Name="PagoHora" ColumnName="PagoHora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="EduTecModel.Store.CursosDictadosDocente" FunctionImportName="CursosDictadosDocente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EduTecModel.CursosDictadosDocente_Result">
+          <ScalarProperty Name="Ciclo" ColumnName="Ciclo" />
+          <ScalarProperty Name="CodProfesor" ColumnName="CodProfesor" />
+          <ScalarProperty Name="CodCurso" ColumnName="CodCurso" />
+          <ScalarProperty Name="NombreCurso" ColumnName="NombreCurso" />
+          <ScalarProperty Name="Matriculados" ColumnName="Matriculados" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_registra_Curso" FunctionName="EduTecModel.Store.usp_registra_Curso" />
+    <FunctionImportMapping FunctionImportName="usp_reporte_CumplimientoCurso" FunctionName="EduTecModel.Store.usp_reporte_CumplimientoCurso">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EduTecModel.usp_reporte_CumplimientoCurso_Result">
+          <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+          <ScalarProperty Name="NomCurso" ColumnName="NomCurso" />
+          <ScalarProperty Name="Vacantes" ColumnName="Vacantes" />
+          <ScalarProperty Name="Matriculados" ColumnName="Matriculados" />
+          <ScalarProperty Name="Ingreso_proyectado" ColumnName="Ingreso_proyectado" />
+          <ScalarProperty Name="Ingreso_real" ColumnName="Ingreso_real" />
+          <ScalarProperty Name="cumplimiento" ColumnName="cumplimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_reporte_HistorialAlumno" FunctionName="EduTecModel.Store.usp_reporte_HistorialAlumno">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EduTecModel.usp_reporte_HistorialAlumno_Result">
+          <ScalarProperty Name="IdCiclo" ColumnName="IdCiclo" />
+          <ScalarProperty Name="IdAlumno" ColumnName="IdAlumno" />
+          <ScalarProperty Name="Estudiante" ColumnName="Estudiante" />
+          <ScalarProperty Name="FecMatricula" ColumnName="FecMatricula" />
+          <ScalarProperty Name="IdCurso" ColumnName="IdCurso" />
+          <ScalarProperty Name="NomCurso" ColumnName="NomCurso" />
+          <ScalarProperty Name="Horario" ColumnName="Horario" />
+          <ScalarProperty Name="ExaParcial" ColumnName="ExaParcial" />
+          <ScalarProperty Name="ExaFinal" ColumnName="ExaFinal" />
+          <ScalarProperty Name="Promedio" ColumnName="Promedio" />
+          <ScalarProperty Name="ExaSusti" ColumnName="ExaSusti" />
+          <ScalarProperty Name="Docente" ColumnName="Docente" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
