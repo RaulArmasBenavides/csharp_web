@@ -109,10 +109,23 @@ namespace Intranet.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Alumno alumno = db.Alumnoes.Find(id);
-            db.Alumnoes.Remove(alumno);
-            //db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Alumno alumno = db.Alumnoes.Find(id);
+                Console.WriteLine(alumno.NomAlumno);
+                Console.WriteLine(db.Alumnoes.Count().ToString());
+                db.Alumnoes.Remove(db.Alumnoes.Find(id));
+                // db.Alumnoes.Remove(alumno);
+                Console.WriteLine(db.Alumnoes.Count().ToString());
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+          
         }
 
         protected override void Dispose(bool disposing)

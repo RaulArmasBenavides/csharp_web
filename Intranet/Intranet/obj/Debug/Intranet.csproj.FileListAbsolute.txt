@@ -235,3 +235,4 @@ C:\Users\RAUL\Documents\rmab\C#\PRODU\web\Intranet\Intranet\bin\EntityFramework.
 C:\Users\RAUL\Documents\rmab\C#\PRODU\web\Intranet\Intranet\bin\EntityFramework.SqlServer.dll
 C:\Users\RAUL\Documents\rmab\C#\PRODU\web\Intranet\Intranet\bin\EntityFramework.xml
 C:\Users\RAUL\Documents\rmab\C#\PRODU\web\Intranet\Intranet\bin\EntityFramework.SqlServer.xml
+C:\Users\RAUL\Documents\rmab\C#\PRODU\web\Intranet\Intranet\obj\Debug\Intranet.csprojResolveAssemblyReference.cache
